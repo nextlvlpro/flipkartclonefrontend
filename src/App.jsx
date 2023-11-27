@@ -25,7 +25,7 @@ axios.defaults.withCredentials = true
 
 function App() {
 
-  axios.defaults.baseURL = 'http://localhost:4000/'
+  axios.defaults.baseURL = 'https://flipkartbackend-ndsf.onrender.com'
   return (
     <LoggedInUserContextProvider>
       <Routes>
