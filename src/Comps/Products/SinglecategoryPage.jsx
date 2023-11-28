@@ -10,7 +10,7 @@ export default function SinglecategoryPage() {
     const [categoryData, setcategoryData] = useState('')
     useEffect(() => {
         axios.post('/products/' + id).then((data) => {
-            console.log(data);
+            
             setcategoryData(data)
             setLoding(false)
         })

@@ -86,8 +86,8 @@ export default function Navbar2() {
           </div>
 
           <div className='flex flex-col items-center justify-center ml-3 w-7/12'>
-            <div className='flex w-full'>
-              <div className='bg-[#F0F5FF] h-10 flex justify-center items-center rounded-l-md px-2 text-gray-500 font-medium'>
+            <div className='flex w-full items-center justify-center outline-none'>
+              <div className='bg-[#F0F5FF] h-[2.4rem] flex justify-center items-center rounded-l-md px-2 text-gray-500 font-medium -mr-1 z-[998]'>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Search Icon</title><path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#717478" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"></path><path d="M16 16L21 21" stroke="#717478" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"></path></svg>
               </div>
               <input value={searchVlaue} onChange={search} type="text" className='bg-[#F0F5FF] h-10 w-full py-1 outline-none rounded-r-md text-[18px]' title="Search for Products, Brands and More" name="q" autoComplete="off" placeholder="Search for Products, Brands and More" />
@@ -127,20 +127,27 @@ export default function Navbar2() {
             </div>
             <div className='flex items-center justify-center gap-2 cursor-pointer'>
 
-              <Link to={!currentUser ? '/user/login' : '/user/logout'} className='flex items-center justify-center gap-2 cursor-pointer'>
+              
 
+              <Dropdown label={<>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="w-5 h-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
+                </svg> {!currentUser && (<>Sign In</>)}
+              </>
+              } 
+                arrowIcon={!!currentUser? true:false} placement="top" color='[#2874F0]'>
+                  {!currentUser && (
+                    <Dropdown.Item as={Link} to='/user/login'> Sign in</Dropdown.Item>
+                  )}
+                  {!!currentUser && (
+                    <Dropdown.Item as={Link} to='/user/logout'> Sign Out</Dropdown.Item>
+                  )}
+                
+                <Dropdown.Item as={Link} to='/'> Home</Dropdown.Item>
+                <Dropdown.Item as={Link} to={!!currentUser? '/allcart':'/user/login'}> Cart</Dropdown.Item>
+                <Dropdown.Item as={Link} to={!!currentUser? '/orders':'/user/login'}>My Orders</Dropdown.Item>
+              </Dropdown>
 
-                <span className='hidden lg:flex flex-nowrap text-[17px]'>{!!currentUser ? <>Sign out</> : <>Sign in</>}</span>
-              </Link>
-
-              <Link>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="w-3 h-3">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-              </Link>
 
             </div>
             <Link to={currentUser ? '/allcart' : '/user/login'} className='flex items-center justify-center gap-2 cursor-pointer'>
@@ -169,7 +176,7 @@ export default function Navbar2() {
           <div className='flex items-center justify-between'>
             <div className='flex items-center justify-center gap-3'>
               <div>
-                <Dropdown label={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="White" className="w-6 h-6 -mx-5">
+                <Dropdown label={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="White" className="w-6 h-6 -mr-5 -ml-3 -my-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>} 
                 arrowIcon={false} placement="top" color='[#2874F0]'>

@@ -67,9 +67,11 @@ export default function BuySingleProduct() {
         itemquantity:itemquantity,}).then(({data}) => {
           if (data == 'done') {
             alert('item saved')
+            setCartChanged(true)
           }
           if (data == 'updated') {
             alert('updated')
+            setCartChanged(true)
           }
         })
         
