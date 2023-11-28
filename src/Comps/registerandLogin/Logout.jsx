@@ -11,10 +11,10 @@ export default function Logout() {
         e.preventDefault();
 
         axios.post('/user/logout').then((res) => {
-            if(res.data == 'done') {
+           
                 setCurrentUser(null)
                 navigate('/')
-            }
+            
             
         })
     }
